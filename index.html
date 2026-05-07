@@ -590,7 +590,7 @@ footer{background:var(--dk);padding:56px 32px 46px;text-align:center}
 }
 @keyframes twinkle{
   0%, 100%{opacity:0; transform:scale(.98)}
-  45%{opacity:.55; transform:scale(1)}
+  45%{opacity:.78; transform:scale(1)}
   60%{opacity:.18; transform:scale(1.02)}
 }
 
@@ -606,15 +606,15 @@ footer{background:var(--dk);padding:56px 32px 46px;text-align:center}
   background:
     radial-gradient(circle at 30% 30%, rgba(255,255,255,.65), rgba(255,255,255,0) 55%),
     radial-gradient(circle at 60% 60%, rgba(255,255,255,.2), rgba(255,255,255,0) 60%),
-    linear-gradient(180deg, rgba(255,255,255,.90), rgba(225,225,225,.70));
-  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    linear-gradient(180deg, rgba(255,194,214,.95), rgba(255,160,196,.85));
+  box-shadow: 0 10px 30px rgba(0,0,0,.10); outline: 1px solid rgba(0,0,0,.05);
 }
 @keyframes fallEdge{
   0%{ transform: translate3d(0,-30px,0) rotate(25deg); opacity:0; }
   10%{ opacity:.55; }
   100%{ transform: translate3d(var(--dx), calc(100vh + 80px), 0) rotate(var(--rot)); opacity:0; }
 }
-@media (prefers-reduced-motion: reduce){ #petalsEdge{display:none} }
+@media (prefers-reduced-motion: reduce){ .petalEdge{animation-duration:12s !important; opacity:.35 !important;} }
 
 
 /* Location photo overlay */
@@ -638,12 +638,12 @@ footer{background:var(--dk);padding:56px 32px 46px;text-align:center}
   background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.86));
   border:1px solid rgba(0,0,0,.10);
   box-shadow:0 18px 55px rgba(0,0,0,.10);
-  padding:0;
+  padding:18px;
 }
 .prize{
   position:relative;
   border-radius:22px;
-  padding:24px 20px;
+  padding:18px 16px;
   background:radial-gradient(ellipse at 30% 20%, rgba(201,168,76,.12), rgba(255,255,255,.86));
   border:1px solid rgba(201,168,76,.22);
   text-align:center;
@@ -714,7 +714,7 @@ footer{background:var(--dk);padding:56px 32px 46px;text-align:center}
 
 
 /* Scratch layer visibility fix */
-.scratchInner{min-height:220px}
+.scratchInner{min-height:260px}
 .prize{position:relative; z-index:5;}
 #scratchCanvas{z-index:20; background:transparent;}
 
@@ -791,9 +791,9 @@ footer{background:var(--dk);padding:56px 32px 46px;text-align:center}
 
 /* IBAN scratch card - compact & truly hidden */
 .scratchCard{max-width:680px;margin:0 auto}
-.scratchInner{border-radius:22px;overflow:hidden;background:rgba(255,255,255,.86);border:1px solid rgba(0,0,0,.10);box-shadow:0 18px 55px rgba(0,0,0,.10);padding:0}
+.scratchInner{border-radius:22px;overflow:hidden;background:rgba(255,255,255,.86);border:1px solid rgba(0,0,0,.10);box-shadow:0 18px 55px rgba(0,0,0,.10);padding:18px}
 .scratchArea{position:relative;border-radius:18px;overflow:hidden}
-.scratchArea .prize{border-radius:18px;padding:24px 20px;background:radial-gradient(ellipse at 30% 20%, rgba(201,168,76,.12), rgba(255,255,255,.90));border:1px solid rgba(201,168,76,.22);text-align:center}
+.scratchArea .prize{border-radius:18px;padding:18px 16px;background:radial-gradient(ellipse at 30% 20%, rgba(201,168,76,.12), rgba(255,255,255,.90));border:1px solid rgba(201,168,76,.22);text-align:center}
 .prTitle{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--tx2)}
 .prIban{margin-top:10px;font-family:'Cinzel',serif;font-size:16px;letter-spacing:1.1px;color:var(--tx);white-space:nowrap}
 .phText{margin-top:10px;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--tx2)}
@@ -813,9 +813,9 @@ footer{background:var(--dk);padding:56px 32px 46px;text-align:center}
 
 
 /* IBAN scratch spacing fixes */
-.scratchInner{padding:0 !important;}
-.scratchArea{min-height:220px !important; display:flex; flex-direction:column; justify-content:center; align-items:center; width:100%;}
-.scratchArea .prize{padding:24px 20px !important; width:100%;}
+.scratchInner{padding:12px !important;}
+.scratchArea{min-height:0 !important;}
+.scratchArea .prize{padding:16px 14px !important;}
 
 
 
@@ -901,7 +901,7 @@ footer{background:var(--dk);padding:56px 32px 46px;text-align:center}
     <h2 class="ti sr d1">Un Giorno Speciale</h2>
     <div style="font-size:20px;text-align:center;margin:14px 0 2px" class="sr d1">🤍</div>
     <div class="orn sr d2"><div class="ol"></div><div class="od"></div><div class="ol or2"></div></div>
-    <p class="wt sr d2">Siamo felici e onorati<br>che possiate essere partecipi<br>del nostro grande giorno.<br><br>La vostra presenza<br>renderà questo momento<br>ancora più speciale.</p>
+    <p class="wt sr d2">Siamo felici e onorati<br>che possiate essere partecipi<br>del nostro grande giorno.<br><br>La vostra presenza<br>renderà questo momento<br>ancora più speciale.<br><br><strong>Con tutto il nostro amore,</strong></p>
     <div class="sig sr d3">
       <div class="sig-c">Con amore,</div>
       <div class="sig-n">Ciro <span class="sig-a">&</span> Filomena</div>
@@ -911,8 +911,8 @@ footer{background:var(--dk);padding:56px 32px 46px;text-align:center}
           Aggiungi al Calendario ▾
         </button>
         <div class="cdrop" id="calDrop">
-          <a class="copt" onclick="openGoogleCalendar(event)">📅 Google Calendar</a>
-          <a class="copt" onclick="openAppleCalendar(event)">🍎 Apple / Outlook</a>
+          <a class="copt" href="https://calendar.google.com/calendar/r/eventedit?text=Matrimonio+Ciro+%26+Filomena&dates=20260828T150000Z/20260828T220000Z&details=Rito+civile+ore+17:00+%7C+Cena+ore+20:00&location=Hotel+Boutique+Esplanade,+Via+Poseidonia+41,+Laura+SA" target="_blank">📅 Google Calendar</a>
+          <a class="copt" href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20260828T150000Z%0ADTEND:20260828T220000Z%0ASUMMARY:Matrimonio%20Ciro%20%26%20Filomena%0ADESCRIPTION:Rito%20Civile%20ore%2017:00%20%7C%20Cena%20ore%2020:00%0ALOCATION:Hotel%20Boutique%20Esplanade%2C%20Via%20Poseidonia%2041%2C%20Laura%20SA%0AEND:VEVENT%0AEND:VCALENDAR" download="matrimonio.ics">🍎 Apple / Outlook (.ics)</a>
         </div>
       </div>
     </div>
@@ -972,8 +972,8 @@ footer{background:var(--dk);padding:56px 32px 46px;text-align:center}
         <div class="ltr"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="lt">Dalle ore 17:00</span></div>
         <div class="la">Via Poseidonia 41<br>84050 Laura (SA)</div>
         <a href="https://maps.google.com/?q=Via+Poseidonia+41,+84050+Laura+SA" target="_blank" class="mlink"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Apri in Maps</a>
-        <a class="mapprev" href="https://maps.google.com/?q=Hotel+Boutique+Esplanade+Via+Poseidonia+41+Laura+SA" target="_blank" rel="noopener">
-          <iframe title="Mappa" src="https://www.google.com/maps?q=Hotel%20Boutique%20Esplanade%20Via%20Poseidonia%2041%20Laura%20SA&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a class="mapprev" href="https://maps.google.com/?q=Via+Poseidonia+41,+84050+Laura+SA" target="_blank" rel="noopener">
+          <iframe title="Mappa" src="https://www.google.com/maps?q=Via%20Poseidonia%2041,%2084050%20Laura%20SA&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="mapcta">Apri Maps</div>
         </a>
       </div>
@@ -985,6 +985,10 @@ footer{background:var(--dk);padding:56px 32px 46px;text-align:center}
         <div class="lpin"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div class="lv">Hotel Boutique Esplanade</div></div>
         <div class="ltr"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="lt">Subito dopo il rito civile</span></div>
         <div class="la">Via Poseidonia 41<br>84050 Laura (SA)</div>
+        <div class="lmore">
+          <div class="lbadges"><span class="lbd">Piscina & Giardino</span><span class="lbd">Parcheggio</span><span class="lbd">A due passi dal mare</span></div>
+          <p class="ldesc">Una location raccolta con giardini curati e piscina: perfetta per l’aperitivo e per proseguire la serata. È vicina al mare e ai Templi di Paestum.</p>
+        </div>
         <a href="https://maps.google.com/?q=Hotel+Boutique+Esplanade+Via+Poseidonia+41+Laura+SA" target="_blank" class="mlink"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Apri in Maps</a>
         <a class="mapprev" href="https://maps.google.com/?q=Hotel+Boutique+Esplanade+Via+Poseidonia+41+Laura+SA" target="_blank" rel="noopener">
           <iframe title="Mappa" src="https://www.google.com/maps?q=Hotel%20Boutique%20Esplanade%20Via%20Poseidonia%2041%20Laura%20SA&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -1400,69 +1404,6 @@ function tab(name){
 function toggleCal(e){e.stopPropagation();document.getElementById('calDrop').classList.toggle('open')}
 document.addEventListener('click',()=>document.getElementById('calDrop')?.classList.remove('open'));
 
-function openGoogleCalendar(e){
-  e.preventDefault();
-  e.stopPropagation();
-  const eventTitle = 'Matrimonio Ciro & Filomena';
-  const eventDate = '20260828';
-  const eventTime = 'T170000';
-  const eventLocation = 'Hotel Boutique Esplanade, Via Poseidonia 41, Laura SA';
-  
-  // Prova a aprire Google Calendar tramite l'URI schema
-  const googleCalendarUrl = `https://calendar.google.com/calendar/r/eventedit?text=${encodeURIComponent(eventTitle)}&dates=${eventDate}${eventTime}Z/${eventDate}T220000Z&location=${encodeURIComponent(eventLocation)}&details=Matrimonio%20--%20Cerimonia%20ore%2017:00%20%7C%20Aperitivo%20ore%2018:30%20%7C%20Cena%20ore%2020:00`;
-  
-  // Prova aprire app Google Calendar su Android
-  if(/android/i.test(navigator.userAgent)){
-    try {
-      window.location.href = 'intent://calendar.google.com/calendar/r/eventedit?text=' + encodeURIComponent(eventTitle) + '&dates=20260828T170000Z/20260828T220000Z&location=' + encodeURIComponent(eventLocation) + '#Intent;scheme=https;package=com.google.android.calendar;end';
-      return;
-    } catch(e) {
-      // Fallback a Google Calendar web
-      window.open(googleCalendarUrl, '_blank');
-      return;
-    }
-  }
-  
-  // Per iOS e desktop: apri il link web di Google Calendar
-  window.open(googleCalendarUrl, '_blank');
-}
-
-function openAppleCalendar(e){
-  e.preventDefault();
-  e.stopPropagation();
-  
-  const eventTitle = 'Matrimonio Ciro & Filomena';
-  const eventDate = '20260828';
-  const eventLocation = 'Hotel Boutique Esplanade, Via Poseidonia 41, Laura SA';
-  
-  const icsContent = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Matrimonio//IT\nCALSCALE:GREGORIAN\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:${eventDate}T170000Z\nDTEND:${eventDate}T220000Z\nDTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z\nUID:matrimonio-${Date.now()}@matrimonio.local\nSUMMARY:${eventTitle}\nDESCRIPTION:Cerimonia ore 17:00 | Aperitivo ore 18:30 | Cena ore 20:00\nLOCATION:${eventLocation}\nSTATUS:CONFIRMED\nEND:VEVENT\nEND:VCALENDAR`;
-  
-  // Per iOS: prova ad aprire Apple Calendar tramite webcal
-  if(/iphone|ipad|mac/i.test(navigator.userAgent)){
-    try {
-      // Usa il protocollo webcal per iOS
-      const blobUrl = URL.createObjectURL(new Blob([icsContent], { type: 'text/calendar' }));
-      window.location.href = blobUrl;
-      return;
-    } catch(e) {
-      // Fallback: download file .ics
-      const blobUrl = URL.createObjectURL(new Blob([icsContent], { type: 'text/calendar' }));
-      const link = document.createElement('a');
-      link.href = blobUrl;
-      link.download = 'matrimonio.ics';
-      link.click();
-      return;
-    }
-  }
-  
-  // Per Android e altri: download il file .ics
-  const blobUrl = URL.createObjectURL(new Blob([icsContent], { type: 'text/calendar' }));
-  const link = document.createElement('a');
-  link.href = blobUrl;
-  link.download = 'matrimonio.ics';
-  link.click();
-}
-
 /* ─── RSVP ─── */
 let pres=null;
 function prsvp(v){
@@ -1482,7 +1423,7 @@ function srsvp(){
   if(pres==='yes'&&g)body+=`\nAltri partecipanti:\n${g}\n`;
   if(pres==='no'&&a)body+=`\nChi non partecipa:\n${a}\n`;
   if(no)body+=`\nNote/Allergie:\n${no}\n`;
-  window.location.href=`mailto:CiroeFilomena.rsvp@gmail.com?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
+  window.location.href=`mailto:ciromaiorano64@gmail.com?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
   setTimeout(()=>{
     document.getElementById('rf').style.display='none';
     const ok=document.getElementById('rok');ok.classList.add('show');
@@ -1552,7 +1493,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
   let scratchedScore=0;
   const strokeW=34;
-  const finishAt=0.65;
+  const finishAt=0.45;
 
   function ratio(){
     const areaPx=Math.max(1,w*h);
