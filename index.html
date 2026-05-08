@@ -877,9 +877,150 @@ footer{background:var(--dk);padding:56px 32px 46px;text-align:center}
   .ibanGrid{grid-template-columns:1fr 1fr}
 }
 
+
+/* ACCESSO CON PASSWORD */
+#loginOverlay{
+  position:fixed;
+  inset:0;
+  max-width:430px;
+  margin:0 auto;
+  z-index:10000000;
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(255,255,255,.76), rgba(248,244,237,.96) 48%, rgba(239,232,216,.98) 100%),
+    url('assets/paper.jpg');
+  background-size:cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+  transition:opacity .55s ease, transform .55s ease;
+}
+#loginOverlay.hidden{
+  opacity:0;
+  transform:scale(1.02);
+  pointer-events:none;
+}
+#loginOverlay::before{
+  content:'';
+  position:absolute;
+  inset:16px;
+  border:1px solid rgba(201,168,76,.25);
+  pointer-events:none;
+}
+#loginOverlay::after{
+  content:'';
+  position:absolute;
+  inset:24px;
+  border:1px solid rgba(201,168,76,.10);
+  pointer-events:none;
+}
+.loginBox{
+  width:100%;
+  max-width:360px;
+  position:relative;
+  z-index:2;
+  background:rgba(255,255,255,.74);
+  border:1px solid rgba(201,168,76,.24);
+  border-radius:24px;
+  padding:34px 24px 28px;
+  text-align:center;
+  box-shadow:0 24px 70px rgba(42,33,24,.16);
+  backdrop-filter:blur(10px);
+}
+.loginBox .loginEy{
+  font-family:'Cinzel',serif;
+  font-size:9px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--oro);
+  display:block;
+  margin-bottom:12px;
+}
+.loginBox h1{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:38px;
+  line-height:1.05;
+  color:var(--tx);
+  margin-bottom:8px;
+}
+.loginBox .loginDate{
+  font-family:'Cinzel',serif;
+  font-size:10px;
+  letter-spacing:3px;
+  color:var(--tx2);
+  margin-bottom:24px;
+}
+.loginBox p{
+  font-family:'EB Garamond',serif;
+  font-style:italic;
+  color:var(--tx2);
+  font-size:17px;
+  line-height:1.55;
+  margin-bottom:18px;
+}
+#loginInput{
+  width:100%;
+  border:1px solid rgba(201,168,76,.34);
+  background:rgba(255,255,255,.82);
+  border-radius:999px;
+  padding:14px 16px;
+  font-family:'EB Garamond',serif;
+  font-size:17px;
+  color:var(--tx);
+  outline:none;
+  text-align:center;
+}
+#loginInput:focus{
+  border-color:rgba(201,168,76,.72);
+  box-shadow:0 0 0 4px rgba(201,168,76,.10);
+}
+.loginBox button{
+  width:100%;
+  margin-top:14px;
+  border:0;
+  border-radius:999px;
+  padding:14px 16px;
+  background:linear-gradient(135deg,var(--or2),var(--oro));
+  color:var(--dk);
+  font-family:'Cinzel',serif;
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  cursor:pointer;
+  box-shadow:0 12px 30px rgba(201,168,76,.22);
+}
+.loginBox button:active{transform:translateY(1px)}
+#loginError{
+  min-height:20px;
+  margin-top:12px;
+  color:#9b2f24;
+  font-family:'EB Garamond',serif;
+  font-size:15px;
+  opacity:0;
+  transition:opacity .2s ease;
+}
+#loginError.show{opacity:1}
+body.loginLocked{overflow:hidden}
+
 </style>
 </head>
 <body>
+
+<!-- ACCESSO CON PASSWORD -->
+<div id="loginOverlay" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+  <div class="loginBox">
+    <span class="loginEy">Invito riservato</span>
+    <h1 id="loginTitle">Ciro <span style="color:var(--oro)">&amp;</span> Filomena</h1>
+    <div class="loginDate">28 Agosto 2026</div>
+    <p>Inserisci la password per aprire l’invito.</p>
+    <input id="loginInput" type="password" placeholder="Password" autocomplete="off" inputmode="text">
+    <button id="loginButton" type="button">Entra</button>
+    <div id="loginError" aria-live="polite">Password errata, riprova.</div>
+  </div>
+</div>
+
 
 
 <!-- ENVELOPE / HOME VIDEO -->
@@ -1145,6 +1286,65 @@ footer{background:var(--dk);padding:56px 32px 46px;text-align:center}
 <div id="mBtn" onclick="togMusic()">
   <svg id="mIco" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
 </div>
+
+
+<script>
+/* ACCESSO CON PASSWORD */
+(function(){
+  const ACCESS_KEY = 'weddingcef_access_granted';
+  const SITE_PASSWORD = 'cef2026'; // cambia qui la password
+
+  document.documentElement.classList.add('login-pending');
+
+  function unlockSite(){
+    const overlay = document.getElementById('loginOverlay');
+    document.body.classList.remove('loginLocked');
+    if(!overlay) return;
+    overlay.classList.add('hidden');
+    setTimeout(()=> overlay.remove(), 650);
+  }
+
+  function checkPassword(){
+    const input = document.getElementById('loginInput');
+    const error = document.getElementById('loginError');
+    const value = (input && input.value ? input.value : '').trim();
+
+    if(value === SITE_PASSWORD){
+      try{ localStorage.setItem(ACCESS_KEY, 'yes'); }catch(e){}
+      unlockSite();
+      return;
+    }
+
+    if(error) error.classList.add('show');
+    if(input){
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', function(){
+    document.body.classList.add('loginLocked');
+
+    let granted = false;
+    try{ granted = localStorage.getItem(ACCESS_KEY) === 'yes'; }catch(e){}
+
+    if(granted){
+      unlockSite();
+      return;
+    }
+
+    const input = document.getElementById('loginInput');
+    const button = document.getElementById('loginButton');
+
+    button && button.addEventListener('click', checkPassword);
+    input && input.addEventListener('keydown', function(e){
+      if(e.key === 'Enter') checkPassword();
+    });
+
+    setTimeout(()=>{ if(input) input.focus(); }, 250);
+  });
+})();
+</script>
 
 <script>
 /* ─── AUDIO ─── */
